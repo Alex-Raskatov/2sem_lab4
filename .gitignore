@@ -1,0 +1,6 @@
+*_bin
+*.txt
+*.png
+/venv
+/tex
+*out
