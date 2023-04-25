@@ -1,3 +1,5 @@
+#include <iostream>
+
 struct Tree {
     int key;
     Tree *left = nullptr;
@@ -10,10 +12,7 @@ Tree *newNode(int key) {
 }
 
 bool emptyNode(Tree *node) {
-    if (node == nullptr)
-        return true;
-    else
-        return false;;
+    return node == nullptr;
 }
 
 int exampleNode (Tree *root) {
@@ -44,6 +43,8 @@ Tree *insertNode(Tree *node, int key) {
         node->right = insertNode(node->right, key);
     else
         return node;
+
+    return node;
 }
 
 Tree *minValueNode(Tree *node) {
@@ -88,21 +89,9 @@ Tree *deleteNode(Tree *root, int key) {
 }
 
 void erase(Tree *root) {
-    if (root->left != nullptr && root->left != nullptr) {
+    if (root != nullptr) {
         erase(root->left);
         erase(root->right);
         delete root;
-        root = nullptr;
-    } else if (root->left != nullptr) {
-        erase(root->left);
-        delete root;
-        root = nullptr;
-    } else if (root->right != nullptr) {
-        erase(root->right);
-        delete root;
-        root = nullptr;
-    } else {
-        delete root;
-        root = nullptr;
     }
 }

@@ -155,8 +155,10 @@ AVL_tree *deleteNode(AVL_tree *root, int key) {
     }
 
     // балансировка дерева
-    root->height = 1 + max(height(root->left),
-                height(root->right));
+    if (!root)
+        return root;
+        
+    root->height = 1 + max(height(root->left),height(root->right));
 
     int balance = getBalance(root);
     if (balance > 1 && getBalance(root->left) >= 0)
@@ -179,22 +181,10 @@ AVL_tree *deleteNode(AVL_tree *root, int key) {
 }
 
 void erase(AVL_tree *root) {
-    if (root->left != nullptr && root->left != nullptr) {
+    if (root != nullptr) {
         erase(root->left);
         erase(root->right);
         delete root;
-        root = nullptr;
-    } else if (root->left != nullptr) {
-        erase(root->left);
-        delete root;
-        root = nullptr;
-    } else if (root->right != nullptr) {
-        erase(root->right);
-        delete root;
-        root = nullptr;
-    } else {
-        delete root;
-        root = nullptr;
     }
 }
 
